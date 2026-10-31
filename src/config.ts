@@ -16,7 +16,7 @@ export const config = createConfig({
   chains: [arcChain, mainnet], // mainnet needed for ENS resolution
   connectors: [injected()],
   transports: {
-    [arcChain.id]: http(),
+    [arcChain.id]: http(arcChain.rpcUrls.default.http[0]),
     [mainnet.id]:  http(), // ENS resolution uses mainnet
   } as Record<typeof arcChain.id | typeof mainnet.id, ReturnType<typeof http>>,
 })
